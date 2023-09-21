@@ -8,10 +8,6 @@ public class UnactivatePanel : MonoBehaviour
     [SerializeField] private GameObject alertBoard;
     [SerializeField] private TMP_Text alertDetail;
 
-    private void Awake()
-    {
-        
-    }
     private void Start()
     {
         alertDetail.text = $"Exchange is more then Cash";

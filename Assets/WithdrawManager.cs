@@ -11,6 +11,7 @@ public class WithdrawManager : ExchangeManager
         if (isAvailable)
         {
             GameManager.instance.Withdraw(moneyOnWaiting);
+            _field.text = "0";
         }
         else
         {
@@ -20,7 +21,7 @@ public class WithdrawManager : ExchangeManager
 
     protected override bool CheckAmountOf(int moneyOnWaiting)
     {
-        if (moneyOnWaiting > int.Parse(GameManager.instance.userAccount.text))
+        if (moneyOnWaiting > int.Parse(GameManager.instance.userAccount.text.Replace(",", "")))
         {
             return false;
         }

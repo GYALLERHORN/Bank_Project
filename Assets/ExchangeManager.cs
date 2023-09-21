@@ -18,6 +18,11 @@ public class ExchangeManager : MonoBehaviour // 입금만을 처리하는 스크립트다.
     {
         _field = inputField.GetComponent<TMP_InputField>();
     }
+
+    private void OnEnable()
+    {
+        _field.text = "0";
+    }
     public void InputMoney()
     {
         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
@@ -42,6 +47,7 @@ public class ExchangeManager : MonoBehaviour // 입금만을 처리하는 스크립트다.
         if (isAvailable)
         {
             GameManager.instance.Deposit(moneyOnWaiting);
+            _field.text = "0";
         }
         else
         {
@@ -51,7 +57,7 @@ public class ExchangeManager : MonoBehaviour // 입금만을 처리하는 스크립트다.
 
     protected virtual bool CheckAmountOf(int moneyOnWaiting)
     {
-        if (moneyOnWaiting > int.Parse(GameManager.instance.userCash.text))
+        if (moneyOnWaiting > int.Parse(GameManager.instance.userCash.text.Replace(",","")))
         {
             return false;
         }
