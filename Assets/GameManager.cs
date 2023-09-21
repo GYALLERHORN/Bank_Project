@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject user;
 
+    public GameObject exchangePanel;
+
     public TMP_Text userName;
     public TMP_Text userCash;
     public TMP_Text userAccount;
+
+    public bool isDepositRunning;
 
     private void Awake()
     {
@@ -25,14 +29,22 @@ public class GameManager : MonoBehaviour
         userAccount.text = user.GetComponent<UserInfo>().account.ToString();
     }
 
-
-    public void Deposit()
+    public void RunDepositPanel()
     {
-
+        isDepositRunning = true;
+        exchangePanel.SetActive(true);
     }
 
-    public void Withdraw()
-    {
 
+    public void Deposit(int money)
+    {
+        userCash.text = (int.Parse(userCash.text) - money).ToString();
+        userAccount.text = (int.Parse(userAccount.text) + money).ToString();
+    }
+
+    public void Withdraw(int money)
+    {
+        userAccount.text = (int.Parse(userAccount.text) - money).ToString();
+        userCash.text = (int.Parse(userCash.text) + money).ToString();
     }
 }

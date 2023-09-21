@@ -9,6 +9,7 @@ using System;
 public class ExchangeManager : MonoBehaviour
 {
     public GameObject User;
+    public GameObject alertPanel;
 
     [SerializeField] private GameObject inputField;
     private TMP_InputField _field;
@@ -17,7 +18,7 @@ public class ExchangeManager : MonoBehaviour
     {
         _field = inputField.GetComponent<TMP_InputField>();
     }
-    private void InputMoney()
+    public void InputMoney()
     {
         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
         int money = int.Parse(clickedButton.GetComponentInChildren<TMP_Text>().text);
@@ -34,24 +35,31 @@ public class ExchangeManager : MonoBehaviour
         }
     }
 
-    private void RequestExchange() // 우선 입금부터 Cash->Account
+    public void RequestExchange() // 우선 입금부터 Cash->Account
     {
         int moneyOnWaiting = int.Parse(_field.text);
         bool isAvailable = CheckAmountOf(moneyOnWaiting);
+        if (isAvailable)
+        {
+            GameManager.instance.Deposit(moneyOnWaiting);
+        }
+        else
+        {
+            alertPanel.SetActive(true);
+        }
     }
 
     private bool CheckAmountOf(int moneyOnWaiting)
     {
-        if (moneyOnWaiting > int.Parse(GameManager.instance.userCash.ToString()))
+        if (moneyOnWaiting > int.Parse(GameManager.instance.userCash.text))
         {
             return false;
         }
-
         return true;
     }
 
-    private void Cancel()
+    public void Cancel()
     {
-
+        gameObject.SetActive(false);
     }
 }
