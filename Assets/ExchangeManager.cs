@@ -6,13 +6,13 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class ExchangeManager : MonoBehaviour
+public class ExchangeManager : MonoBehaviour // 입금만을 처리하는 스크립트다.
 {
     public GameObject User;
     public GameObject alertPanel;
 
     [SerializeField] private GameObject inputField;
-    private TMP_InputField _field;
+    protected TMP_InputField _field;
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class ExchangeManager : MonoBehaviour
         }
     }
 
-    public void RequestExchange() // 우선 입금부터 Cash->Account
+    public virtual void RequestExchange() // 우선 입금부터 Cash->Account
     {
         int moneyOnWaiting = int.Parse(_field.text);
         bool isAvailable = CheckAmountOf(moneyOnWaiting);
@@ -49,7 +49,7 @@ public class ExchangeManager : MonoBehaviour
         }
     }
 
-    private bool CheckAmountOf(int moneyOnWaiting)
+    protected virtual bool CheckAmountOf(int moneyOnWaiting)
     {
         if (moneyOnWaiting > int.Parse(GameManager.instance.userCash.text))
         {

@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject user;
 
-    public GameObject exchangePanel;
+    public GameObject depositPanel;
+    public GameObject withdrawPanel;
 
     public TMP_Text userName;
     public TMP_Text userCash;
@@ -32,7 +33,13 @@ public class GameManager : MonoBehaviour
     public void RunDepositPanel()
     {
         isDepositRunning = true;
-        exchangePanel.SetActive(true);
+        depositPanel.SetActive(true);
+    }
+
+    public void RunWithdrawPanel()
+    {
+        isDepositRunning = false;
+        withdrawPanel.SetActive(true);
     }
 
 
