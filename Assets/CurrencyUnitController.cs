@@ -20,8 +20,5 @@ public class CurrencyUnitController : MonoBehaviour
         _number.text = string.Format("{0:#,###}", int.Parse(_number.text));
     }
 
-    private void Update()
-    {
-        
-    }
+    
 }

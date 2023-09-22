@@ -33,11 +33,7 @@ public class ExchangeManager : MonoBehaviour // 입금만을 처리하는 스크립트다.
 
     private void AddMoney(int money)
     {
-        if (int.TryParse(_field.text, out int result))
-        {
             _field.text = (int.Parse(_field.text) + money).ToString();
-            // Debug.Log(_field.text);
-        }
     }
 
     public virtual void RequestExchange() // 우선 입금부터 Cash->Account
@@ -57,11 +53,16 @@ public class ExchangeManager : MonoBehaviour // 입금만을 처리하는 스크립트다.
 
     protected virtual bool CheckAmountOf(int moneyOnWaiting)
     {
-        if (moneyOnWaiting > int.Parse(GameManager.instance.userCash.text.Replace(",","")))
+        if (moneyOnWaiting > GameManager.instance.user.GetComponent<UserInfo>().cash)
         {
             return false;
         }
         return true;
+    }
+
+    public void ClearInputField()
+    {
+        _field.text = "0";
     }
 
     public void Cancel()

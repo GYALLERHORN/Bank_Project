@@ -21,7 +21,7 @@ public class WithdrawManager : ExchangeManager
 
     protected override bool CheckAmountOf(int moneyOnWaiting)
     {
-        if (moneyOnWaiting > int.Parse(GameManager.instance.userAccount.text.Replace(",", "")))
+        if (moneyOnWaiting > GameManager.instance.user.GetComponent<UserInfo>().account)
         {
             return false;
         }

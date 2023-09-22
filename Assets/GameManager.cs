@@ -13,17 +13,18 @@ public class GameManager : MonoBehaviour
     public GameObject withdrawPanel;
 
     public TMP_Text userName;
-    public TMP_Text userCash;
-    public TMP_Text userAccount;
+    public TMP_Text userCashText;
+    public TMP_Text userAccountText;
 
     public bool isDepositRunning;
 
     private void Awake()
     {
         instance = this;
+
         userName.text = user.GetComponent<UserInfo>().userName;
-        userCash.text = user.GetComponent<UserInfo>().cash.ToString();
-        userAccount.text = user.GetComponent<UserInfo>().account.ToString();
+        userCashText.text = user.GetComponent<UserInfo>().cash.ToString();
+        userAccountText.text = user.GetComponent<UserInfo>().account.ToString();
     }
 
     public void RunDepositPanel()
@@ -41,13 +42,17 @@ public class GameManager : MonoBehaviour
 
     public void Deposit(int money)
     {
-        userCash.text = (int.Parse(userCash.text.Replace(",", "")) - money).ToString();
-        userAccount.text = (int.Parse(userAccount.text.Replace(",", "")) + money).ToString();
+        userCashText.text = (user.GetComponent<UserInfo>().cash - money).ToString();
+        user.GetComponent<UserInfo>().cash = int.Parse(userCashText.text);
+        userAccountText.text = (user.GetComponent<UserInfo>().account + money).ToString();
+        user.GetComponent<UserInfo>().account = int.Parse(userAccountText.text);
     }
 
     public void Withdraw(int money)
     {
-        userAccount.text = (int.Parse(userAccount.text.Replace(",", "")) - money).ToString();
-        userCash.text = (int.Parse(userCash.text.Replace(",", "")) + money).ToString();
+        userAccountText.text = (user.GetComponent<UserInfo>().account - money).ToString();
+        user.GetComponent<UserInfo>().account = int.Parse(userAccountText.text);
+        userCashText.text = (user.GetComponent<UserInfo>().cash + money).ToString();
+        user.GetComponent<UserInfo>().cash = int.Parse(userCashText.text);
     }
 }
