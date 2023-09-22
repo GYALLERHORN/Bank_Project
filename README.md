@@ -18,6 +18,7 @@ ATM시스템 만들기
 
 ![image](https://github.com/GYALLERHORN/Bank_Project/assets/141597722/02154e95-87c6-4128-84e0-13cbca1b51ea)</br>
 사용자 이름(Name), 현금(Cash), 계좌 잔액(Account)를 좌측 텍스트로, 입금(DEPOSIT)&출금(WITHDRAW) 기능을 우측 버튼으로 구현했습니다.
+
 </br>
 ![image](https://github.com/GYALLERHORN/Bank_Project/assets/141597722/1f4ab43c-14bb-41ca-ac58-60a4995a43c6)</br>
  - 
